@@ -9,7 +9,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "pip3 install -r requirements.txt"
+    "postinstall": "pipenv install"
   },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.0.6",

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "flask-dev": "pipenv install && FLASK_DEBUG=1 pipenv run flask --app api/index run -p 8000",
-    "start-worker": "pipenv run rq worker",
+    "start-worker": "cd api && pipenv run rq worker",
     "next-dev": "next dev",
     "dev": "concurrently \"bun run next-dev\" \"bun run flask-dev\" \"bun run start-worker\"",
     "build": "next build",

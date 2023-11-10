@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from flask_rq2 import RQ
 import demucs.separate
 from os.path import join
@@ -15,9 +15,13 @@ def separate_song_parts(path, model="htdemucs", jobs=1):
     )
 
 
-@app.route("/api/python")
-def hello_world():
-    path = join("data", "file.mp4")
+@app.route("/api/separate", methods = ['POST', 'GET'])
+def separate():
+    if request.method == 'POST':
+        path = request.form.get('path', join("data", "file.mp4"))
+    else:
+        path = join("data", "file.mp4")
+
     job = separate_song_parts.queue(path)
     status = job.get_status()
 
